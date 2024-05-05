@@ -60,7 +60,8 @@ func getNProgramsClient(n int64) (*desc.TrainPrograms, error) {
 
 func main() {
 	start := time.Now()
-	programs, err := getNProgramsClient(55)
+	var n int64 = 0
+	programs, err := getNProgramsClient(n)
 	if err != nil {
 		log.Println(err)
 	}
@@ -69,6 +70,18 @@ func main() {
 	if err != nil {
 		fmt.Errorf("fail to get json: %v", err)
 	}
-	log.Printf("TOTAL TIME TO GET PROGRAMS: %v\n", end.Sub(start))
-	log.Printf("SEZE OF PROGRAMS: %d\n", len(numOfSets))
+	log.Printf("|\t\t\tGRPC INFO: SIZE[%d]\t\t\t|\n", n)
+	log.Printf("|\tTOTAL TIME TO GET PROGRAMS:\t%v\t\t|\n", end.Sub(start))
+	log.Printf("|\tSIZE OF PROGRAMS:\t\t%s\t|\n", getSizeInFormattedString(int64(len(numOfSets))))
+}
+
+func getSizeInFormattedString(byteSize int64) string {
+	if byteSize < 1024 {
+		return fmt.Sprintf("%.3f байт\t", float64(byteSize))
+	}
+	if byteSize < 1024*1024 {
+		return fmt.Sprintf("%.3f килобайт\t", float64(byteSize)/1024)
+	} else {
+		return fmt.Sprintf("%.3f мегабайт\t", float64(byteSize)/(1024*1024))
+	}
 }
