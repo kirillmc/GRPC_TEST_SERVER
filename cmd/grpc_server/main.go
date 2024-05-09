@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"errors"
 	"fmt"
 	"log"
 	"net"
@@ -10,8 +9,7 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 
-	"github.com/kirillmc/data_filler/pkg/filler_pb"
-	"github.com/kirillmc/grpc_test_server/internal/converter"
+	filler "github.com/kirillmc/grpc_test_server/internal/filler_pb"
 	desc "github.com/kirillmc/grpc_test_server/pkg/program_v3"
 )
 
@@ -29,7 +27,7 @@ func main() {
 	}
 
 	s := grpc.NewServer(
-	//grpc.MaxRecvMsgSize(messageSize),
+		grpc.MaxSendMsgSize(messageSize),
 	)
 	reflection.Register(s)
 	desc.RegisterProgramV3Server(s, &server{})
@@ -43,12 +41,26 @@ func main() {
 }
 
 func (s *server) Get(ctx context.Context, req *desc.GetRequest) (*desc.TrainPrograms, error) {
-	// Дополнение:
-	if req.GetCount() == 0 {
-		return nil, errors.New("count is 0")
-	}
 
-	var programs = filler_pb.CreateOwnSetOfPrograms(int(req.GetCount()))
+	var programs = filler.CreateOwnSetOfPrograms(int(req.GetCount()))
 
-	return converter.ToResponseProgramsFromRepo(programs), nil
+	return programs, nil
+}
+
+func (s *server) Create(ctx context.Context, req *desc.TrainPrograms) (*desc.Response, error) {
+	req.GetTrainPrograms()
+
+	return &desc.Response{Message: "Данные были добавлены"}, nil
+}
+
+func (s *server) Update(ctx context.Context, req *desc.TrainPrograms) (*desc.Response, error) {
+	req.GetTrainPrograms()
+
+	return &desc.Response{Message: "Данные были обновлены"}, nil
+}
+
+func (s *server) Delete(ctx context.Context, req *desc.DeleteRequest) (*desc.Response, error) {
+	req.GetId()
+
+	return &desc.Response{Message: "Данные были удалены"}, nil
 }

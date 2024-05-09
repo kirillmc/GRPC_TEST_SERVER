@@ -6,6 +6,9 @@ option go_package = "github.com/kirillmc/grpc_test_server/pkg/program_v3;program
 
 service ProgramV3{
   rpc Get(GetRequest) returns (TrainPrograms);
+  rpc Create(TrainPrograms) returns (Response);
+  rpc Update(TrainPrograms) returns (Response);
+  rpc Delete(DeleteRequest) returns (Response);
 }
 message GetRequest{
   int64 Count = 1;
@@ -42,4 +45,12 @@ message TrainProgram{
 
 message TrainPrograms{
   repeated TrainProgram train_programs = 1;
+}
+
+message Response{
+  string message = 1;
+}
+
+message DeleteRequest{
+  int64 id = 1;
 }

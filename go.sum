@@ -2,8 +2,6 @@ github.com/golang/protobuf v1.5.4 h1:i7eJL8qZTpSEXOPTxNKhASYpMn+8e5Q6AdndVa1dWek
 github.com/golang/protobuf v1.5.4/go.mod h1:lnTiLA8Wa4RWRcIUkrtSVa5nRhsEGBg48fD6rSs7xps=
 github.com/google/go-cmp v0.6.0 h1:ofyhxvXcZhMsU5ulbFiLKl/XBFqE1GSq7atu8tAmTRI=
 github.com/google/go-cmp v0.6.0/go.mod h1:17dUlkBOakJ0+DkrSSNjCkIjxS6bF9zb3elmeNGIjoY=
-github.com/kirillmc/GRPC_TEST_SERVER v0.0.0-20240502202423-f5d140c93cd3 h1:tdfyoK+kpGXx63lM4lPEvXeZKJU2iR9Z5ko3dRZ7cSg=
-github.com/kirillmc/GRPC_TEST_SERVER v0.0.0-20240502202423-f5d140c93cd3/go.mod h1:Xt+TxxOVDXGHkJEQymiqQlc1oaBKGQvdrQ3EqtgIH4g=
 github.com/kirillmc/data_filler v0.0.0-20240504211724-4e6bde434c55 h1:OiIdzXNzzuDzTFK4uvqB/e6uJQfr6h288ilItjGQj5c=
 github.com/kirillmc/data_filler v0.0.0-20240504211724-4e6bde434c55/go.mod h1:oOYgcxISE88xxbIsnJJ0x0j/1jJOISTORo83UAD3Bzk=
 golang.org/x/net v0.21.0 h1:AQyQV4dYCvJ7vGmJyKki9+PBdyvhkSd8EIx/qb0AYv4=

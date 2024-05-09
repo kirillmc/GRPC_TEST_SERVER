@@ -23,15 +23,54 @@ generate-program-api:
 docker-build:
 	docker buildx build --no-cache --platform linux/amd64 -t grpc_test_server:v0.0.1 .
 
-grpc-load-test:
+grpc-load-test-get:
 	ghz \
 		--proto api/program_v3/program_v3.proto \
-		--call program_v1.ProgramV1.Get \
-		--data '{"Count": 1}' \
-		--rps 100 \
+		--call program_v3.ProgramV3.Get \
+		--data '{"Count": 5}' \
+		--concurrency 10 \
 		--total 3000 \
 		--insecure \
 		localhost:50051
+grpc-load-test-get:
+	ghz \
+		--proto api/program_v3/program_v3.proto \
+		--call program_v3.ProgramV3.Get \
+		--data '{"Count": 5}' \
+		--concurrency 10 \
+		--total 3000 \
+		--insecure \
+		localhost:50051
+grpc-load-test-post:
+	ghz \
+		--proto api/program_v3/program_v3.proto \
+		--call program_v3.ProgramV3.Get \
+		--data '{"Count": 5}' \
+		--concurrency 10 \
+		--total 3000 \
+		--insecure \
+		localhost:50051
+grpc-load-test-delete:
+	ghz \
+		--proto api/program_v3/program_v3.proto \
+		--call program_v3.ProgramV3.Get \
+		--data '{"Count": 5}' \
+		--concurrency 10 \
+		--total 3000 \
+		--insecure \
+		localhost:50051
+
+grpc-load-test1:
+	ghz \
+        --insecure \
+        --proto api/program_v3/program_v3.proto \
+        --call program_v3.ProgramV3.Get \
+        --data '{"Count": 21}' \
+        --total 1000 \
+        --concurrency 100 \
+        --connections 100 \
+        --timeout 0 \
+       localhost:50051
 
 grpc-error-load-test:
 	ghz \
