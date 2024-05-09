@@ -153,7 +153,24 @@ func main() {
 	//
 	//launchFirstTestForm0ToN(n)
 
-	launchThirdTestWithNProgramsAndWg(25, 11)
+	launchThirdTestWithNProgramsAndWg(25, 101)
+
+}
+
+func launchFirstTestForm0ToN(n int64) {
+	fmt.Printf("SIZE - IS ONLY SIZE OF DATA(body)")
+
+	fmt.Printf("\nMETHOD GET from 0 to %d:\n", n)
+	methodFrom0ToNWithAVG(n, oneToGet)
+
+	fmt.Printf("\nMETHOD POST from 0 to %d:\n", n)
+	methodFrom0ToNWithAVG(n, oneToPost)
+
+	fmt.Printf("\nMETHOD UPDATE from 0 to %d:\n", n)
+	methodFrom0ToNWithAVG(n, oneToUpdate)
+
+	fmt.Printf("\nMETHOD DELETE from 0 to %d:\n", n)
+	methodFrom0ToNWithAVG(n, oneToDelete)
 
 }
 
@@ -172,6 +189,7 @@ func launchSecondTestWithNProgramsAndWg(n int64, wgGroupCount int64) {
 	fmt.Printf("\nMETHOD DELETE from 0 to %d USERS:\n", wgGroupCount)
 	methodWithConstAVGOfNGproutines(n, wgGroupCount, oneToDelete)
 }
+
 func launchThirdTestWithNProgramsAndWg(n int64, wgGroupCount int64) {
 	fmt.Printf("SIZE - IS ONLY SIZE OF DATA(body) [USERS: %d]", wgGroupCount)
 
@@ -249,23 +267,6 @@ func getAvgFromSlice(n int64, durOfSize []float64) float64 {
 	}
 
 	return avgTime / float64(n)
-}
-
-func launchFirstTestForm0ToN(n int64) {
-	fmt.Printf("SIZE - IS ONLY SIZE OF DATA(body)")
-
-	fmt.Printf("\nMETHOD GET from 0 to %d:\n", n)
-	methodFrom0ToNWithAVG(n, oneToGet)
-
-	fmt.Printf("\nMETHOD POST from 0 to %d:\n", n)
-	methodFrom0ToNWithAVG(n, oneToPost)
-
-	fmt.Printf("\nMETHOD UPDATE from 0 to %d:\n", n)
-	methodFrom0ToNWithAVG(n, oneToUpdate)
-
-	fmt.Printf("\nMETHOD DELETE from 0 to %d:\n", n)
-	methodFrom0ToNWithAVG(n, oneToDelete)
-
 }
 
 func methodFrom0ToNWithAVG(n int64, fun func(int64) (float64, float64)) {
